@@ -13,6 +13,11 @@ class HBNBCommand(cmd.Cmd):
         """ """
         return True
     
+    def emptyline(self):
+        """if enter is clicked it will pass
+        """
+        pass
+    
     def help_quit(self):
         """  """
         print("Quit command to exit the program")
