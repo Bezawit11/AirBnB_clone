@@ -1,13 +1,14 @@
 #!/usr/bin/python3
 """something"""
 
+
 import cmd
 class HBNBCommand(cmd.Cmd):
     """i willll"""
     def __init__(self):
         """"""
         cmd.Cmd.__init__(self)
-        self.prompt = '(hbnb) '
+        self.prompt = "(hbnb) "
 
     def do_quit(self, arg):
         """ """
@@ -29,6 +30,10 @@ class HBNBCommand(cmd.Cmd):
     def help_EOF(self):
         """" """
         print("terminate")
+        
+    def do_help(self, arg):
+        """To get help"""
+        return super().do_help(arg)
         
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
