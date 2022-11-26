@@ -23,6 +23,7 @@ class HBNBCommand(cmd.Cmd):
 
     def emptyline(self):
         """    """
+        print("")
         pass
         
 if __name__ == '__main__':
