@@ -20,10 +20,15 @@ class HBNBCommand(cmd.Cmd):
     def do_quit(self, arg):
         """  """
         return True
-
+    def help_quit(self):
+        """  """
+        print("Quit command to exit the program")
+        print()
+    def help_EOF(self):
+        """ """
+        pass
     def emptyline(self):
         """    """
-        print("")
         pass
         
 if __name__ == '__main__':
