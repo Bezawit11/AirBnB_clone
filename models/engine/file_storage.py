@@ -8,12 +8,11 @@ import json
 
 class FileStorage:
     """  """
-    __file_path = "/alx-low_level_programming/prac/file.json"
+    __file_path = "file.json"
     __objects = {}  # dictionary - empty but will store all objects by <class name>.id
 
     def all(self):
         """  """
-        print("all")
         return self.__objects
 
     def new(self, obj):
@@ -22,7 +21,6 @@ class FileStorage:
 
     def save(self):
         """ """
-        print("saving")
         out_file = open(self.__file_path, "w")
         json.dump(self.__objects, out_file, indent=6, default=str)
         out_file.close()
