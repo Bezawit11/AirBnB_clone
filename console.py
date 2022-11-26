@@ -5,7 +5,7 @@ import cmd
 class HBNBCommand(cmd.Cmd):
     """i willll"""
     def __init__(self):
-       """ """
+        """"""
         cmd.Cmd.__init__(self)
         self.prompt = '(hbnb) '
 
@@ -18,7 +18,7 @@ class HBNBCommand(cmd.Cmd):
         print("Quit command to exit the program")
         
     def do_EOF(self, arg):
-      	"""  """
+        """"""
         return True
         
     def help_EOF(self):
