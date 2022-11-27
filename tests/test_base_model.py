@@ -31,7 +31,6 @@ class TestBase(unittest.TestCase):
         self.assertIsInstance(b1.id, str)
         self.assertIsInstance(b2.id, str)
         self.assertEqual(b2_uuid, b2.id)
-        self.assertEqual(b2.name, "The weeknd")
         self.assertIsInstance(b1.created_at, datetime)
         self.assertIsInstance(b1.created_at, datetime)
         self.assertEqual(str(type(b1)),
