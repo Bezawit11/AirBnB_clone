@@ -68,8 +68,22 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist ** ")
         else:
             print("** class name missing ** ")
+    
+        def do_all(self, arg):
+            """    """
+            o = storage.all()
+            l = []
+            if arg:
+                a = arg.split()
+                for h in HBNBCommand.classes.keys():
+                    if h == a[0]:
+                        l.append(o)
+                        print(l)
+                        return
+                print("** class doesn't exist **")
+                return
+            l.append(o)
+            print(l)
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
-        
-    
