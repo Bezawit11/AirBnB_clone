@@ -31,7 +31,6 @@ class TestBase(unittest.TestCase):
         self.assertIsInstance(b1.id, str)
         self.assertIsInstance(b2.id, str)
         self.assertEqual(b2_uuid, b2.id)
-        self.assertEqual(b2.album, "Trilogy")
         self.assertEqual(b2.name, "The weeknd")
         self.assertIsInstance(b1.created_at, datetime)
         self.assertIsInstance(b1.created_at, datetime)
@@ -60,27 +59,6 @@ class TestBase(unittest.TestCase):
         b.save()
         diff = b.updated_at - date_now
         self.assertTrue(abs(diff.total_seconds()) < 0.01)
-
-    def test_save_storage(self):
-        """Tests that storage.save() is called from save()."""
-        b = BaseModel()
-        b.save()
-        key = "{}.{}".format(type(b).__name__, b.id)
-        d = {key: b.to_dict()}
-        self.assertTrue(os.path.isfile(FileStorage._FileStorage__file_path))
-        with open(FileStorage._FileStorage__file_path,
-                  "r", encoding="utf-8") as f:
-            self.assertEqual(len(f.read()), len(json.dumps(d)))
-            f.seek(0)
-            self.assertEqual(json.load(f), d)
-
-    def test_save_excess_args(self):
-        """Tests save() with too many arguments."""
-        self.resetStorage()
-        with self.assertRaises(TypeError) as e:
-            BaseModel.save(self, 98)
-        msg = "save() takes 1 positional argument but 2 were given"
-        self.assertEqual(str(e.exception), msg)
 
     def test_str(self):
         """Test method for str representation"""
