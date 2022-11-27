@@ -43,8 +43,8 @@ class BaseModel:
         """ returns a dictionary containing all keys/values of
             __dict__ of the instance
         """
-        d = {**self.__dict__}
-        d['__class__'] = type(self).__name__
-        d['created_at'] = d['created_at'].isoformat()
-        d['updated_at'] = d['updated_at'].isoformat()
-        return d
+        h = {**self.__dict__}
+        h['__class__'] = type(self).__name__
+        h['created_at'] = h['created_at'].isoformat()
+        h['updated_at'] = h['updated_at'].isoformat()
+        return h
