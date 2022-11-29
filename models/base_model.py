@@ -22,14 +22,22 @@ class BaseModel:
                     self.created_at = datetime.strptime(value, form1)
                 elif key == 'updated_at':
                     self.updated_at = datetime.strptime(value, form1)
+                elif key == '__class__':
+                    continue
+                else:
+                    self.__dict__[key] = value
         else:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
-            models.storage.new(self)
+            storage.new(self)
 
     def __str__(self):
         """Returns the string representation"""
+        for key in self.__dict__.keys():
+            if key == '__class__':
+                self.__dict__.pop(key)
+                break
         return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
 
     def save(self):
@@ -43,8 +51,11 @@ class BaseModel:
         """ returns a dictionary containing all keys/values of
             __dict__ of the instance
         """
-        h = {**self.__dict__}
+        h = self.__dict__.copy()
         h['__class__'] = type(self).__name__
-        h['created_at'] = h['created_at'].isoformat()
-        h['updated_at'] = h['updated_at'].isoformat()
+        for key, value in h.items():
+            if key == "created_at" or key == "updated_at":
+                h[key] = value.isoformat()
+            else:
+                h[key] = value
         return h
