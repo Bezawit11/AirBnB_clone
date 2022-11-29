@@ -12,12 +12,13 @@ from models.review import Review
 from models.amenity import Amenity
 from models.place import Place
 
+
 class HBNBCommand(cmd.Cmd):
     """i willll"""
     prompt = "(hbnb) "
     classes = {'BaseModel': BaseModel, 'Review': Review, 'User': User,
-                'Amenity': Amenity, 'City': City, 'State': State,
-                 'Place': Place}
+               'Amenity': Amenity, 'City': City, 'State': State,
+               'Place': Place}
 
     def do_help(self, arg):
         """To get help
