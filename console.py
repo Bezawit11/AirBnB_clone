@@ -66,7 +66,7 @@ class HBNBCommand(cmd.Cmd):
             for h in HBNBCommand.classes.keys():
                 if h == a[0]:
                     if len(a) < 2:
-                         print("** instance id missing ** ")
+                         print("** instance id missing **")
                          return
                     con = "{}.{}".format(a[0], a[1])
                     d = storage.all()
@@ -74,9 +74,11 @@ class HBNBCommand(cmd.Cmd):
                         if k == con:
                             print(d[k])
                             return
-                print("** class doesn't exist ** ")
+                    print("** no instance found **")
+                    return
+            print("** class doesn't exist **")
         else:
-            print("** class name missing ** ")
+            print("** class name missing **")
     
     def do_all(self, arg):
         """    """
@@ -110,11 +112,11 @@ class HBNBCommand(cmd.Cmd):
                             del d[k]
                             storage.save()
                             return
-                    print("** no instance found ** ")
+                    print("** no instance found **")
                     return
-            print("** class doesn't exist ** ")
+            print("** class doesn't exist **")
         else:
-            print("** class name missing ** ")
+            print("** class name missing **")
             
         def do_update(self, arg: str):
             """Updates an instance based on the class name and id.
