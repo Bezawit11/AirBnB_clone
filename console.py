@@ -103,7 +103,7 @@ class HBNBCommand(cmd.Cmd):
             for h in HBNBCommand.classes.keys():
                 if h == a[0]:
                     if len(a) < 2:
-                        print("** instance id missing ** ")
+                        print("** instance id missing **")
                         return
                     con = "{}.{}".format(a[0], a[1])
                     d = storage.all()
@@ -121,38 +121,31 @@ class HBNBCommand(cmd.Cmd):
         def do_update(self, arg: str):
             """Updates an instance based on the class name and id.
             """
-            args = arg.split(maxsplit=3)
-            if not validate_classname(args, check_id=True):
-                return
-
-            instance_objs = storage.all()
-            key = "{}.{}".format(args[0], args[1])
-            req_instance = instance_objs.get(key, None)
-            if req_instance is None:
-                print("** no instance found **")
-                return
-
-            match_json = re.findall(r"{.*}", arg)
-            if match_json:
-                payload = None
-                try:
-                    payload: dict = json.loads(match_json[0])
-                except Exception:
-                    print("** invalid syntax")
-                    return
-                for k, v in payload.items():
-                    setattr(req_instance, k, v)
-                storage.save()
-                return
-            if not validate_attrs(args):
-                return
-            first_attr = re.findall(r"^[\"\'](.*?)[\"\']", args[3])
-            if first_attr:
-                setattr(req_instance, args[2], first_attr[0])
+            if arg:
+                a = arg.split()
+                for h in HBNBCommand.classes.keys():
+                    if h == a[0]:
+                        if len(a) < 2:
+                            print("** instance id missing **")
+                            return
+                        con = "{}.{}".format(a[0], a[1])
+                        d = storage.all()
+                        for k in d.keys():
+                            if k == con:
+                                if len(a) < 3:
+                                    print("** attribute name missing **")
+                                    return
+                                if len(a) < 4:
+                                    print("** value missing **")
+                                    return
+                                d[k].__dict__[a[2]] = a[3]
+                                storage.save()
+                                return
+                        print("** no instance found **")
+                        return
+                print("** class doesn't exist **")
             else:
-                value_list = args[3].split()
-                setattr(req_instance, args[2], parse_str(value_list[0]))
-            storage.save()
+                print("** class name missing **")
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
