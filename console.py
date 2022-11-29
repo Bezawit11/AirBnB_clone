@@ -94,6 +94,28 @@ class HBNBCommand(cmd.Cmd):
             l.append(o)
             print(l)
         
+        def do_destroy(self, arg):
+            """ """
+            if arg:
+                a = arg.split()
+                for h in HBNBCommand.classes.keys():
+                    if h == a[0]:
+                        if len(a) < 2:
+                            print("** instance id missing ** ")
+                            return
+                        con = "{}.{}".format(a[0], a[1])
+                        d = storage.all()
+                        for k in d.keys():
+                            if k == con:
+                                del d[k]
+                                storage.save()
+                                return
+                        print("** no instance found ** ")
+                        return
+                print("** class doesn't exist ** ")
+            else:
+                print("** class name missing ** ")
+            
         def do_update(self, arg: str):
             """Updates an instance based on the class name and id.
             """
