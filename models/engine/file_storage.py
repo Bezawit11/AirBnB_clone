@@ -23,12 +23,15 @@ class FileStorage:
 
     def new(self, obj):
         """sets in __objects the obj with key <obj class name>.id"""
-        FileStorage.__objects["{}.{}".format(obj.__class__.__name__, obj.id)] = obj.to_dict()
+        FileStorage.__objects["{}.{}".format(obj.__class__.__name__, obj.id)] = obj
 
     def save(self):
         """ """
         out_file = open(self.__file_path, "w")
-        json.dump(self.__objects, out_file, indent=6, default=str)
+        d = self.__objects.copy()
+        for key, value in d.items():
+            d[key] = value.to_dict()
+        json.dump(d, out_file, indent=6, default=str)
         out_file.close()
 
     def reload(self):
@@ -42,6 +45,6 @@ class FileStorage:
                             values.pop("__class__")
                             break
                         break
-                    self.__objects[keys] = values
+                    self.__objects[keys] = BaseModel(**values)
         except (json.decoder.JSONDecodeError, FileNotFoundError):
             return
