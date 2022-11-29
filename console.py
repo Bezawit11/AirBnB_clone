@@ -79,7 +79,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing ** ")
     
     def do_all(self, arg):
-            """    """
+        """    """
         o = storage.all()
         l = []
         if arg:
