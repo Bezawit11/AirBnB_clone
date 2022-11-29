@@ -16,9 +16,9 @@ class HBNBCommand(cmd.Cmd):
     """i willll"""
     prompt = "(hbnb) "
     classes = {'BaseModel': BaseModel, 'Review': Review, 'User': User,
-                   'Amenity': Amenity, 'City': City, 'State': State,
-                   'Place': Place}
-        
+                'Amenity': Amenity, 'City': City, 'State': State,
+                 'Place': Place}
+
     def do_help(self, arg):
         """To get help
         """
@@ -58,7 +58,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         else:
             print("** class name missing **")
-    
+
     def do_show(self, arg):
         """   """
         if arg:
@@ -66,8 +66,8 @@ class HBNBCommand(cmd.Cmd):
             for h in HBNBCommand.classes.keys():
                 if h == a[0]:
                     if len(a) < 2:
-                         print("** instance id missing **")
-                         return
+                        print("** instance id missing **")
+                        return
                     con = "{}.{}".format(a[0], a[1])
                     d = storage.all()
                     for k in d.keys():
@@ -79,23 +79,23 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         else:
             print("** class name missing **")
-    
+
     def do_all(self, arg):
         """    """
         o = storage.all()
-        l = []
+        lk = []
         if arg:
             a = arg.split()
             for h in HBNBCommand.classes.keys():
                 if h == a[0]:
-                    l.append(o)
-                    print(l)
+                    lk.append(o)
+                    print(lk)
                     return
             print("** class doesn't exist **")
             return
-        l.append(o)
-        print(l)
-        
+        lk.append(o)
+        print(lk)
+
     def do_destroy(self, arg):
         """ """
         if arg:
@@ -117,7 +117,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         else:
             print("** class name missing **")
-            
+
     def do_update(self, arg: str):
         """Updates an instance based on the class name and id.
         """
@@ -146,6 +146,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         else:
             print("** class name missing **")
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
