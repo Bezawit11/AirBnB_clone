@@ -15,7 +15,7 @@ import json
 class FileStorage:
     """  """
     __file_path = "file.json"
-    __objects = {}  # dictionary - empty but will store all objects by <class name>.id
+    __objects = {}
 
     def all(self):
         """  """
