@@ -147,7 +147,19 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         else:
             print("** class name missing **")
-
-
+    
+    def precmd(self, line):
+        """  """
+        h = line.split(".")
+        for i in HBNBCommand.classes.keys():
+            if i == h[0] and len(h) == 2:
+                if h[1] == "all()":
+                    h = "{} {}".format("all", h[0])
+                    return h
+                elif h[1] == "count()":
+                    h = "count"
+                    return h
+        return line
+    
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
