@@ -159,6 +159,18 @@ class HBNBCommand(cmd.Cmd):
                 elif h[1] == "count()":
                     h = "count"
                     return h
+                elif h[1][0:4] == "show":
+                    try:
+                        h = "{} {} {}".format("show", h[0], h[1][6:-2])
+                        return h
+                    except Exception:
+                        pass
+                elif h[1][0:7] == "destroy":
+                    try:
+                        h = "{} {} {}".format("show", h[0], h[1][9:-2])
+                        return h
+                    except Exception:
+                        pass
         return line
     
     def do_count(self, arg):
