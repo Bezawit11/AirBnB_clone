@@ -161,5 +161,12 @@ class HBNBCommand(cmd.Cmd):
                     return h
         return line
     
+    def do_count(self, arg):
+        """  """
+        n = 0
+        for i in storage.all().keys():
+            n += 1
+        print(n)
+    
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
