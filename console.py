@@ -167,7 +167,7 @@ class HBNBCommand(cmd.Cmd):
                         pass
                 elif h[1][0:7] == "destroy":
                     try:
-                        h = "{} {} {}".format("show", h[0], h[1][9:-2])
+                        h = "{} {} {}".format("destroy", h[0], h[1][9:-2])
                         return h
                     except Exception:
                         pass
